@@ -1,0 +1,10 @@
+# Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
+_commit: 1.0.0
+_src_path: gh:algorandfoundation/algokit-python-template
+author_email: iskysun96@gmail.com
+author_name: iskysun96
+contract_name: personal_vault
+deployment_language: python
+preset_name: starter
+project_name: python-challenge-1
+
