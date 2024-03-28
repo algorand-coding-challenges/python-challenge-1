@@ -1,0 +1,7 @@
+#pragma version 10
+
+smart_contracts.personal_vault.contract.PersonalVault.clear_state_program:
+    // smart_contracts/personal_vault/contract.py:14
+    // class PersonalVault(ARC4Contract):
+    int 1
+    return
