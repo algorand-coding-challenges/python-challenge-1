@@ -44,7 +44,7 @@ git clone [FORKED_REPO_URL]
 
 Now you have 2 ways of opening your AlgoKit project. 
 
-### Use workspace mode 
+### With VSCode Workspaces
 
 1. Open the cloned repository with the code editor of your choosing.
 2. Open workspace mode by clicking `open workspace` inside of `python-challenge-1.code-workspace` file at the root level.  
@@ -55,14 +55,15 @@ algokit project bootstrap all #algokit bootstrap all is being deprecated. Use th
 This command will install all dependecies and also generate a `.env` file for you.
 4. Activate Python virtual environment by running:
 ```bash
-source .venv/bin/activate
+poetry shell
 ```
 venv will automatically be activated the next time you open the project. 
 
+> Please note, in addition to built-in support for [VSCode Workspaces](https://code.visualstudio.com/docs/editor/workspaces), the cli provides native support for monorepos called `algokit workspaces`. Refer to [documentation](https://github.com/algorandfoundation/algokit-cli/blob/main/docs/features/project/run.md#workspace-vs-standalone-projects) for detailed guidelines for recommended project structures and ability to leverage custom command orchestration via `algokit project run`.
 
-### No workspace mode
+### Without VSCode Workspaces
 
-All AlgoKit project has the following directory structure: 
+All AlgoKit projects initialized with `--workspace` option has the following directory structure: 
 
 ```bash
 ├── projects
@@ -71,11 +72,12 @@ All AlgoKit project has the following directory structure:
 │   └── ...
 ├── {several config files...}
 ├── ...
+├── .algokit.toml # workspace-typed algokit project config
 ├── {project-name}.code-workspace
 ├── README.md
 ```
 
-So to access a single project under the `projects` folder, it is recommended to `cd` into the project you want to work with and then open your code editor. If you are reading this and didn't open the `challenge` folder directly, go do that now!! 😁
+So to access a single project under the `projects` folder, it is recommended to `cd` into the project you want to work with and then open your code editor (alternatively refer to VSCode Workspace file at the root). If you are reading this and didn't open the `challenge` folder directly, go do that now!! 😁
 
 1. cd into `projects/challenge` then open the code editor
 2. Setup Dev environment using AlgoKit. Run the below .
@@ -85,7 +87,7 @@ algokit project bootstrap all #algokit bootstrap all is being deprecated. Use th
 This command will install all dependecies and also generate a `.env` file for you.
 3. Activate Python virtual environment by running below inside of `challenge` folder:
 ```bash
-source .venv/bin/activate
+poetry shell
 ```
 venv will automatically be activated the next time you open the project. 
 
@@ -114,6 +116,7 @@ If you see something like this in the console, you successfully fixed the bug! �
 
 - [Algorand Smart Contract Documentation](https://developer.algorand.org/docs/get-details/ethereum_to_algorand/?from_query=ethereunm#accounts-and-smart-contracts)
 - [Algorand Python Documentation](https://algorandfoundation.github.io/puya/api-algopy.html#algopy.Global:~:text=current_application_address%3A%20Final%5B,executing.%20Application%20mode%20only.)
+- [AlgoKit CLI Documentation](https://github.com/algorandfoundation/algokit-cli/blob/main/docs/algokit.md)
 
 ## Checkpoint 4: 💯 Submit your answer 
 
