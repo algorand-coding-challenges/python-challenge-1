@@ -1,4 +1,6 @@
-# python-challenge-1
+# 🎮 Algorand Coding Challenge: Fix The Bug 🐞! Volume 2: Algorand Python Challenges
+
+## 🚩 Challenge 1: My Vault Contract is failing to build! 🏗️
 
 Welcome to your new AlgoKit project!
 
@@ -6,7 +8,7 @@ This is your workspace root. A `workspace` in AlgoKit is an orchestrated collect
 
 By default, `projects_root_path` parameter is set to `projects`. Which instructs AlgoKit CLI to create a new directory under `projects` directory when new project is instantiated via `algokit init` at the root of the workspace.
 
-## Getting Started
+## Getting Started with the challenge!
 
 To get started refer to `README.md` files in respective sub-projects in the `projects` directory.
 
