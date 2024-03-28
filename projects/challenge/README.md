@@ -1,4 +1,4 @@
-# 🎮 Algorand Coding Challenge: Fix The Bug 🐞! Volume 2: Algorand Python Challenges
+# 🎮 Algorand Coding Challenge - Volume 2: 🐍 Python Challenges
 
 ## 🚩 Challenge 1: My Vault Contract is failing to build! 🏗️
 > When compiling my Python smart contract, it fails to build. There seems to be 2 issues... 🤔
