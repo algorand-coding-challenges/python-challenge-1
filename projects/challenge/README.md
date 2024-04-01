@@ -48,12 +48,13 @@ Now you have 2 ways of opening your AlgoKit project.
 
 1. Open the cloned repository with the code editor of your choosing.
 2. Open workspace mode by clicking `open workspace` inside of `python-challenge-1.code-workspace` file at the root level.  
-3. Setup Dev environment using AlgoKit. Run the below .
+3. Go inside of the `challenge` folder. 
+4. To setup your dev environment using AlgoKit, run the below command:
 ```bash
 algokit project bootstrap all #algokit bootstrap all is being deprecated. Use this command from now on. 
 ```
 This command will install all dependecies and also generate a `.env` file for you.
-4. Activate Python virtual environment by running:
+5. Activate Python virtual environment by running:
 ```bash
 poetry shell
 ```
@@ -80,7 +81,7 @@ All AlgoKit projects initialized with `--workspace` option has the following dir
 So to access a single project under the `projects` folder, it is recommended to `cd` into the project you want to work with and then open your code editor (alternatively refer to VSCode Workspace file at the root). If you are reading this and didn't open the `challenge` folder directly, go do that now!! 😁
 
 1. cd into `projects/challenge` then open the code editor
-2. Setup Dev environment using AlgoKit. Run the below .
+2. To setup your dev environment using AlgoKit, run the below command:
 ```bash
 algokit project bootstrap all #algokit bootstrap all is being deprecated. Use this command from now on. 
 ```
