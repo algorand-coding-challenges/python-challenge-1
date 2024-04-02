@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "poetry": "^0.6.28"
+  }
+}
