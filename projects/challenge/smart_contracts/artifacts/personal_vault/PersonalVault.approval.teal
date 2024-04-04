@@ -100,14 +100,14 @@ deposit:
     dup
     assert // Deposit amount must be greater than 0
     // smart_contracts/personal_vault/contract.py:26
-    // ptxn.receiver == Global.creator_address
+    // ptxn.receiver == Global.current_application_address
     frame_dig -1
     gtxns Receiver
-    global CreatorAddress
+    global CurrentApplicationAddress
     ==
     // smart_contracts/personal_vault/contract.py:25-27
     // assert (
-    //     ptxn.receiver == Global.creator_address
+    //     ptxn.receiver == Global.current_application_address
     // ), "Deposit receiver must be the contract address"
     assert // Deposit receiver must be the contract address
     // smart_contracts/personal_vault/contract.py:28
