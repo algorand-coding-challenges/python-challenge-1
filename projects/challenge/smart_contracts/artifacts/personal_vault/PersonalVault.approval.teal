@@ -118,12 +118,12 @@ deposit:
     ==
     assert // Deposit sender must be the caller
     // smart_contracts/personal_vault/contract.py:30
-    // Txn.sender, Global.current_application_id
+    // Txn.sender, Global.caller_application_id
     txn Sender
-    global CurrentApplicationID
+    global CallerApplicationID
     // smart_contracts/personal_vault/contract.py:29-31
     // assert op.app_opted_in(
-    //     Txn.sender, Global.current_application_id
+    //     Txn.sender, Global.caller_application_id
     // ), "Deposit sender must opt-in to the app first."
     app_opted_in
     assert // Deposit sender must opt-in to the app first.
