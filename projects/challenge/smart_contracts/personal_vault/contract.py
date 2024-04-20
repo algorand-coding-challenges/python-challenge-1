@@ -1,4 +1,4 @@
-from algopy import (
+from algopy import ( # type: ignore
     ARC4Contract,
     UInt64,
     arc4,
