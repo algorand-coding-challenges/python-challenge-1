@@ -1,7 +1,7 @@
 #pragma version 10
 
 smart_contracts.personal_vault.contract.PersonalVault.approval_program:
-    // smart_contracts/personal_vault/contract.py:14
+    // smart_contracts/personal_vault/contract.py:13
     // class PersonalVault(ARC4Contract):
     txn NumAppArgs
     bz main_bare_routing@6
@@ -12,14 +12,14 @@ smart_contracts.personal_vault.contract.PersonalVault.approval_program:
     err // reject transaction
 
 main_deposit_route@2:
-    // smart_contracts/personal_vault/contract.py:22
+    // smart_contracts/personal_vault/contract.py:21
     // @arc4.abimethod()
     txn OnCompletion
     !
     assert // OnCompletion is NoOp
     txn ApplicationID
     assert // is not creating
-    // smart_contracts/personal_vault/contract.py:14
+    // smart_contracts/personal_vault/contract.py:13
     // class PersonalVault(ARC4Contract):
     txn GroupIndex
     int 1
@@ -29,7 +29,7 @@ main_deposit_route@2:
     int pay
     ==
     assert // transaction type is pay
-    // smart_contracts/personal_vault/contract.py:22
+    // smart_contracts/personal_vault/contract.py:21
     // @arc4.abimethod()
     callsub deposit
     itob
@@ -41,7 +41,7 @@ main_deposit_route@2:
     return
 
 main_withdraw_route@3:
-    // smart_contracts/personal_vault/contract.py:38
+    // smart_contracts/personal_vault/contract.py:37
     // @arc4.abimethod(allow_actions=["CloseOut"])
     txn OnCompletion
     int CloseOut
@@ -59,14 +59,14 @@ main_withdraw_route@3:
     return
 
 main_bare_routing@6:
-    // smart_contracts/personal_vault/contract.py:14
+    // smart_contracts/personal_vault/contract.py:13
     // class PersonalVault(ARC4Contract):
     txn OnCompletion
     switch main_create@7 main_opt_in_to_app@8
     err // reject transaction
 
 main_create@7:
-    // smart_contracts/personal_vault/contract.py:14
+    // smart_contracts/personal_vault/contract.py:13
     // class PersonalVault(ARC4Contract):
     txn ApplicationID
     !
@@ -75,11 +75,11 @@ main_create@7:
     return
 
 main_opt_in_to_app@8:
-    // smart_contracts/personal_vault/contract.py:18
+    // smart_contracts/personal_vault/contract.py:17
     // @arc4.baremethod(allow_actions=["OptIn"])
     txn ApplicationID
     assert // is not creating
-    // smart_contracts/personal_vault/contract.py:18-19
+    // smart_contracts/personal_vault/contract.py:17-18
     // @arc4.baremethod(allow_actions=["OptIn"])
     // def opt_in_to_app(self) -> None:
     callsub opt_in_to_app
@@ -89,45 +89,45 @@ main_opt_in_to_app@8:
 
 // smart_contracts.personal_vault.contract.PersonalVault.deposit(ptxn: uint64) -> uint64:
 deposit:
-    // smart_contracts/personal_vault/contract.py:22-23
+    // smart_contracts/personal_vault/contract.py:21-22
     // @arc4.abimethod()
     // def deposit(self, ptxn: gtxn.PaymentTransaction) -> UInt64:
     proto 1 1
-    // smart_contracts/personal_vault/contract.py:24
+    // smart_contracts/personal_vault/contract.py:23
     // assert ptxn.amount > 0, "Deposit amount must be greater than 0"
     frame_dig -1
     gtxns Amount
     dup
     assert // Deposit amount must be greater than 0
-    // smart_contracts/personal_vault/contract.py:26
+    // smart_contracts/personal_vault/contract.py:25
     // ptxn.receiver == Global.current_application_address
     frame_dig -1
     gtxns Receiver
     global CurrentApplicationAddress
     ==
-    // smart_contracts/personal_vault/contract.py:25-27
+    // smart_contracts/personal_vault/contract.py:24-26
     // assert (
     //     ptxn.receiver == Global.current_application_address
     // ), "Deposit receiver must be the contract address"
     assert // Deposit receiver must be the contract address
-    // smart_contracts/personal_vault/contract.py:28
+    // smart_contracts/personal_vault/contract.py:27
     // assert ptxn.sender == Txn.sender, "Deposit sender must be the caller"
     frame_dig -1
     gtxns Sender
     txn Sender
     ==
     assert // Deposit sender must be the caller
-    // smart_contracts/personal_vault/contract.py:30
+    // smart_contracts/personal_vault/contract.py:29
     // Txn.sender, Global.current_application_id
     txn Sender
     global CurrentApplicationID
-    // smart_contracts/personal_vault/contract.py:29-31
+    // smart_contracts/personal_vault/contract.py:28-30
     // assert op.app_opted_in(
     //     Txn.sender, Global.current_application_id
     // ), "Deposit sender must opt-in to the app first."
     app_opted_in
     assert // Deposit sender must opt-in to the app first.
-    // smart_contracts/personal_vault/contract.py:33
+    // smart_contracts/personal_vault/contract.py:32
     // self.balance[Txn.sender] += ptxn.amount
     txn Sender
     int 0
@@ -139,32 +139,32 @@ deposit:
     byte "balance"
     uncover 2
     app_local_put
-    // smart_contracts/personal_vault/contract.py:34
+    // smart_contracts/personal_vault/contract.py:33
     // user_balance = self.balance[Txn.sender]
     txn Sender
     int 0
     byte "balance"
     app_local_get_ex
     assert // check balance exists for account
-    // smart_contracts/personal_vault/contract.py:36
+    // smart_contracts/personal_vault/contract.py:35
     // return user_balance
     retsub
 
 
 // smart_contracts.personal_vault.contract.PersonalVault.withdraw() -> uint64:
 withdraw:
-    // smart_contracts/personal_vault/contract.py:38-39
+    // smart_contracts/personal_vault/contract.py:37-38
     // @arc4.abimethod(allow_actions=["CloseOut"])
     // def withdraw(self) -> UInt64:
     proto 0 1
-    // smart_contracts/personal_vault/contract.py:40
+    // smart_contracts/personal_vault/contract.py:39
     // userBalance = self.balance[Txn.sender]
     txn Sender
     int 0
     byte "balance"
     app_local_get_ex
     assert // check balance exists for account
-    // smart_contracts/personal_vault/contract.py:42-47
+    // smart_contracts/personal_vault/contract.py:41-46
     // itxn.Payment(
     //     receiver=Txn.sender,
     //     sender=Global.current_application_address,
@@ -172,13 +172,13 @@ withdraw:
     //     fee=0,
     // ).submit()
     itxn_begin
-    // smart_contracts/personal_vault/contract.py:43
+    // smart_contracts/personal_vault/contract.py:42
     // receiver=Txn.sender,
     txn Sender
-    // smart_contracts/personal_vault/contract.py:44
+    // smart_contracts/personal_vault/contract.py:43
     // sender=Global.current_application_address,
     global CurrentApplicationAddress
-    // smart_contracts/personal_vault/contract.py:46
+    // smart_contracts/personal_vault/contract.py:45
     // fee=0,
     int 0
     itxn_field Fee
@@ -186,11 +186,11 @@ withdraw:
     itxn_field Amount
     itxn_field Sender
     itxn_field Receiver
-    // smart_contracts/personal_vault/contract.py:42
+    // smart_contracts/personal_vault/contract.py:41
     // itxn.Payment(
     int pay
     itxn_field TypeEnum
-    // smart_contracts/personal_vault/contract.py:42-47
+    // smart_contracts/personal_vault/contract.py:41-46
     // itxn.Payment(
     //     receiver=Txn.sender,
     //     sender=Global.current_application_address,
@@ -198,18 +198,18 @@ withdraw:
     //     fee=0,
     // ).submit()
     itxn_submit
-    // smart_contracts/personal_vault/contract.py:49
+    // smart_contracts/personal_vault/contract.py:48
     // return userBalance
     retsub
 
 
 // smart_contracts.personal_vault.contract.PersonalVault.opt_in_to_app() -> void:
 opt_in_to_app:
-    // smart_contracts/personal_vault/contract.py:18-19
+    // smart_contracts/personal_vault/contract.py:17-18
     // @arc4.baremethod(allow_actions=["OptIn"])
     // def opt_in_to_app(self) -> None:
     proto 0 0
-    // smart_contracts/personal_vault/contract.py:20
+    // smart_contracts/personal_vault/contract.py:19
     // self.balance[Txn.sender] = UInt64(0)
     txn Sender
     byte "balance"
