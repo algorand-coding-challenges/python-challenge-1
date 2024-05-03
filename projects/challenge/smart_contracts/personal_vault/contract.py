@@ -10,6 +10,7 @@ from algopy import (
     op,
 )
 
+
 class PersonalVault(ARC4Contract):
     def __init__(self) -> None:
         self.balance = LocalState(UInt64)
