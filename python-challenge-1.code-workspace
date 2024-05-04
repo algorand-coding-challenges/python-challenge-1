@@ -15,7 +15,8 @@
     "jest.disabledWorkspaceFolders": [
       "ROOT",
       "projects"
-    ]
+    ],
+    "liveServer.settings.multiRootWorkspaceName": "ROOT"
   },
   "extensions": {
     "recommendations": [
