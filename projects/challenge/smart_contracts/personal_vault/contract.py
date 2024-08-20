@@ -10,7 +10,6 @@ from algopy import (
     op,
 )
 
-
 class PersonalVault(ARC4Contract):
     def __init__(self) -> None:
         self.balance = LocalState(UInt64)
@@ -22,12 +21,17 @@ class PersonalVault(ARC4Contract):
     @arc4.abimethod()
     def deposit(self, ptxn: gtxn.PaymentTransaction) -> UInt64:
         assert ptxn.amount > 0, "Deposit amount must be greater than 0"
+        
+        # Corrected the receiver check
         assert (
-            ptxn.receiver == Global.current_application_id
+            ptxn.receiver == Global.current_application_address
         ), "Deposit receiver must be the contract address"
+
         assert ptxn.sender == Txn.sender, "Deposit sender must be the caller"
+        
+        # Corrected the argument type for app_opted_in
         assert op.app_opted_in(
-            Txn.sender, Global.current_application_address
+            Txn.sender, Global.current_application_id
         ), "Deposit sender must opt-in to the app first."
 
         self.balance[Txn.sender] += ptxn.amount
@@ -37,13 +41,13 @@ class PersonalVault(ARC4Contract):
 
     @arc4.abimethod(allow_actions=["CloseOut"])
     def withdraw(self) -> UInt64:
-        userBalance = self.balance[Txn.sender]
+        user_balance = self.balance[Txn.sender]
 
         itxn.Payment(
             receiver=Txn.sender,
             sender=Global.current_application_address,
-            amount=userBalance,
+            amount=user_balance,
             fee=0,
         ).submit()
 
-        return userBalance
+        return user_balance
